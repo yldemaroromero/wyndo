@@ -56,7 +56,7 @@ def webhook(request):
     logger.info(body)
   else:
     merchants = body.get("merchants")
-
+    logger.info(merchants)
     for merchant in merchants.get(settings.MERCHANT_ID):
       merchant_type_action = merchant.get("type")
       merchant_object_id = merchant.get("objectId")

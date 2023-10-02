@@ -19,6 +19,31 @@ def get_token(code):
   else:
     return None
 
+def get_data(update_at):
+  url = '{}/v2/catalog/search'.format(settings.SQUARE_UP_BASE_URL)
+  headers = {
+    'Square-Version': '2023-09-25',
+    'Authorization':'Bearer {}'.format(settings.SQUARE_UP_TOKEN),
+    'Content-Type': 'application/json'
+  }
+  data = {
+   "include_deleted_objects": True,
+   "include_related_objects": False,
+   "begin_time": "2023-10-02T14:49:41.00Z"
+  }
+
+  print(url)
+  print(headers)
+  print(data)
+
+  response = requests.post(url, headers, data)
+  print(response)
+
+  if response.status_code == 200:
+    return response.json()
+  else:
+    return None
+
 
 
 
